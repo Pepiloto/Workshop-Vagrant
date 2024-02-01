@@ -20,7 +20,7 @@ ssh-keygen -f ./.ssh/id_rsa
 #### Let's create a box
 
 ```bash
-vagrant box add cubuntu/xenial64
+vagrant box add ubuntu/xenial64
 vagrant init ubuntu/xenial64
 vagrant up
 vagrant ssh
