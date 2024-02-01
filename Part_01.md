@@ -20,12 +20,19 @@ ssh-keygen -f ./.ssh/id_rsa
 #### Let's create a box
 
 ```bash
-vagrant box add ubuntu/xenial64
-vagrant init ubuntu/xenial64
+vagrant box add generic/alpine312
+vagrant init generic/alpine312
 vagrant up
 vagrant ssh
 #### After that we will destroy the box
 vagrant destroy
+```
+
+#### Some problems ? I have some solutions
+
+```bash
+sudo systemctl enable --now libvirtd
+sudo systemctl enable --now virtnetworkd
 ```
 
 #### The Vagrantfile
@@ -34,7 +41,7 @@ It's a ruby file, so you can use ruby in it.
 
 ```ruby
 Vagrant.configure("2") do |config|
-  config.vm.box = "ubuntu/xenial64"
+  config.vm.box = "generic/alpine312"
   config.vm.network "forwarded_port", guest: 80, host: 8080
   config.vm.provision "shell", inline: <<-SHELL
     apt-get update
